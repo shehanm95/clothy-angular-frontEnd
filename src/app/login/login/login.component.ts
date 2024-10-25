@@ -41,7 +41,14 @@ export class LoginComponent {
   }
   submit(form: NgForm) {
     this.userService.getUser(form.value.username, form.value.password).subscribe((user: AppUser) => {
-      this.login(user);
+
+      if (user) {
+        this.login(user);
+
+      } else {
+        alert("please enter a valid user")
+      }
+      console.log(user);
     },
       (error) => {
         console.error('Login failed', error);
@@ -53,6 +60,5 @@ export class LoginComponent {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.authService.login();
     this.router.navigate(['/products']);
-
   }
 }

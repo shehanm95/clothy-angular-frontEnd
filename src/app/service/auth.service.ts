@@ -6,6 +6,10 @@ import { AppUser } from './user-registration.service';
   providedIn: 'root'
 })
 export class AuthService {
+  clearUser() {
+    localStorage.removeItem('currentUser')
+  }
+
   private isAuthenticated = false;
 
   loginStatus = new EventEmitter()
@@ -17,6 +21,7 @@ export class AuthService {
 
   logout() {
     this.isAuthenticated = false;
+    console.log("loggedOut");
     this.loginStatus.emit(false); // Log the user out
   }
 
