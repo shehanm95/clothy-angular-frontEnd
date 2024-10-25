@@ -12,7 +12,7 @@ export class UserRegistrationService {
   constructor(private http: HttpClient, private authService: AuthService) { }
   deleteUser(id: number) {
     console.log("Deleting user with ID:", id);
-    return this.http.delete(`${MainUrl}/delete/${id}`)
+    return this.http.delete(`${this.mainUrl}/delete/${id}`)
       .subscribe(
         () => {
           console.log(`User with ID ${id} deleted successfully`);
@@ -25,29 +25,29 @@ export class UserRegistrationService {
       );
   }
   getAllUsers(): Observable<AppUser[]> {
-    return this.http.get<AppUser[]>(`${MainUrl}/all`)
+    return this.http.get<AppUser[]>(`${this.mainUrl}/all`)
   }
   registerUser(registerFrom: any): Observable<AppUser> {
-    return this.http.post<AppUser>(`${MainUrl}/saveUser`, registerFrom);
+    return this.http.post<AppUser>(`${this.mainUrl}/saveUser`, registerFrom);
   }
 
 
-  MainUrl = MainUrl;
+  mainUrl = MainUrl + "/user";
   public getUser(username: string, password: string): Observable<AppUser> {
     // Prepare the payload
     const payload = { username, password };
 
     // Send a POST request to authenticate the user
-    return this.http.post<AppUser>(`${MainUrl}/authUser`, payload);
+    return this.http.post<AppUser>(`${this.mainUrl}/authUser`, payload);
   }
 
 
   getUserById(id: string): Observable<AppUser> {
-    return this.http.get<AppUser>(`${MainUrl}/get/${id}`);
+    return this.http.get<AppUser>(`${this.mainUrl}/get/${id}`);
   }
 
   updateUser(user: AppUser): Observable<AppUser> {
-    return this.http.put<AppUser>(`${MainUrl}/update/${user.id}`, user);
+    return this.http.put<AppUser>(`${this.mainUrl}/update/${user.id}`, user);
   }
 
 

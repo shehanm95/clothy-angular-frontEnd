@@ -1,16 +1,17 @@
 <div class="myCard">
     <div class="card">
-        <img src="https://assets.ajio.com/medias/sys_master/root/20220823/YnP9/6303d98baeb269176190f6de/-473Wx593H-464857346-gold-MODEL3.jpg"
-            class="card-img-top" alt="Product Image">
+        <img [src]="'http://localhost:8080/api/products/images/' + product.productImageLink" class="card-img-top"
+            alt="Product Image">
         <div class="card-body">
-            <h5 class="card-title">Product Name</h5>
-            <p class="card-text"><strong>Product ID:</strong> 12345</p>
-            <p class="card-text"><strong>Category:</strong> Electronics</p>
-            <p class="card-text"><strong>Price:</strong> $99.99</p>
+            <h5 class="card-title">{{ product.productName }}</h5>
+            <p class="card-text"><strong>Product ID:</strong> {{ product.id }}</p>
+            <p class="card-text"><strong>Category:</strong> {{ product.category }}</p>
+            <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
             <a href="#" class="btn btn-primary">Add to Cart</a>
         </div>
     </div>
 </div>
+
 
 <style>
     .myCard {
